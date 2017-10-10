@@ -2,7 +2,6 @@
  * Created by kevinellis on 10/5/17.
  */
 let initialStore = {
-    type: "SELECT_COUNTRY_FILTER",
     selectedCountry: "",
     selectedState: "",
     countries: {
@@ -40,9 +39,7 @@ const states = (state = {
 }, action) => {
     switch(action.type){
         case "REQUEST_STATES":
-            return Object.assign({}, state, {
-                fetching: true
-            })
+            return Object.assign({}, state, {})
         case "RECEIVE_STATES":
             return Object.assign({}, state, {
                 fetching: false,
@@ -65,10 +62,10 @@ function countriesApp(state = initialStore, action){
             });
         case "REQUEST_STATES":
         case "RECEIVE_STATES":
-            return states(state.states, action)
+            return Object.assign({}, state, {states: states(state.states, action)});
         case "REQUEST_COUNTRIES":
         case "RECEIVE_COUNTRIES":
-            return countries(state.countries, action)
+            return Object.assign({}, state, {countries: countries(state.countries, action)});
         default:
             return state;
     }

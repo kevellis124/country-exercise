@@ -3,20 +3,20 @@
  */
 import React from 'react';
 import Select from 'react-select';
-import {selectCountryFilter} from '../actions/countryActions';
+import {fetchStates} from '../actions/countryActions';
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => {
     return {
         placeholder: "Choose a Country",
         value: state.selectedCountry,
-        options: state.countries.list
+        options: state.countries.list.map( item => {return {value:item.code, label:item.name}})
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onChange: (selection) => dispatch(selectCountryFilter(selection))
+        onChange: (event) => dispatch(fetchStates(event.value))
     }
 };
 
