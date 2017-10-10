@@ -28,3 +28,16 @@ export const receiveStates = json => {
         states: json.data
     }
 }
+
+export const requestCountries = () => {
+    return {
+        type: "REQUEST_COUNTRIES"
+    }
+}
+
+export const receiveCountries = json => {
+    return {
+        type: "RECEIVE_COUNTRIES",
+        countries: json.data
+    }
+}
